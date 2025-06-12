@@ -1,0 +1,15 @@
+<div class="navbar-container">
+  <div class="navbar-content">
+    <a *ngFor="let item of navItems"
+       [routerLink]="item.url"
+       (click)="setActiveTab(item.name)"
+       [class.active]="activeTab === item.name"
+       class="nav-item">
+      <span class="nav-text">{{ item.name }}</span>
+      <span class="nav-icon" [innerHTML]="getIcon(item.name)"></span>
+      <div *ngIf="activeTab === item.name" class="active-indicator">
+        <div class="lamp-effect"></div>
+      </div>
+    </a>
+  </div>
+</div>

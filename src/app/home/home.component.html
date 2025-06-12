@@ -1,0 +1,125 @@
+<div class="home-hero">
+  <div class="hero-content">
+    <h1>Manage your subscriptions <span class="highlight">with ease</span></h1>
+    <p class="subtitle">Never miss a payment or renewal date again. SubMinder helps you track, manage, and optimize all your subscriptions in one place. Get notified before charges, analyze your spending, and stay in control of your recurring expenses.</p>
+    <div class="hero-actions">
+      <a routerLink="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+      <a routerLink="/dashboard" [queryParams]="{tab: 'subscriptions'}" class="btn">Manage Subscriptions</a>
+    </div>
+  </div>
+</div>
+
+<section class="explainer-section">
+  <h2>Why Choose SubMinder?</h2>
+  <div class="explainer-grid">
+    <div class="explainer-feature">
+      <div class="icon" [innerHTML]="icons['allSubs']"></div>
+      <h3>All Your Subs in One Place</h3>
+      <p>Track every subscription, from Netflix to SaaS, with cost, billing cycle, and renewal dates.</p>
+    </div>
+    <div class="explainer-feature">
+      <div class="icon" [innerHTML]="icons['neverMiss']"></div>
+      <h3>Never Miss a Payment</h3>
+      <p>Get email reminders 24 hours before any charge, so you're always in control.</p>
+    </div>
+    <div class="explainer-feature">
+      <div class="icon" [innerHTML]="icons['seeSpend']"></div>
+      <h3>See Your Spend</h3>
+      <p>Instant dashboard shows your total monthly and yearly outgoings, by category.</p>
+    </div>
+    <div class="explainer-feature">
+      <div class="icon" [innerHTML]="icons['privacy']"></div>
+      <h3>Privacy-First</h3>
+      <p>Your data stays private. No sharing, no selling, ever.</p>
+    </div>
+  </div>
+</section>
+
+<section class="display-cards-section">
+  <h2 class="display-cards-heading">Experience the Future of Subscription Management</h2>
+  <app-display-cards></app-display-cards>
+</section>
+
+<section class="features-section">
+  <h2>Core Features</h2>
+  <app-features-section></app-features-section>
+</section>
+
+<section class="pricing-section" id="pricing" href="#pricing">
+  <h2>Simple Pricing</h2>
+  <div class="pricing-cards">
+    <div class="pricing-card">
+      <h3>Free</h3>
+      <div class="price">$0</div>
+      <ul>
+        <li>Track up to 2 subscriptions</li>
+        <li>Email notifications</li>
+        <li>Basic analytics</li>
+        <li>Single user account</li>
+        <li>Community support</li>
+      </ul>
+      <a routerLink="/auth/register" class="btn">Get started</a>
+    </div>
+    <div class="pricing-card popular">
+      <h3>Standard <span class="badge">Most Popular</span></h3>
+      <div class="price">$5</div>
+      <ul>
+        <li>Track up to 5 subscriptions</li>
+        <li>Email notifications</li>
+        <li>Advanced analytics</li>
+        <li>Single user account</li>
+        <li>Priority support</li>
+        <li>One-time payment</li>
+      </ul>
+      <a routerLink="/auth/register" class="btn btn-primary">Get started</a>
+    </div>
+    <div class="pricing-card">
+      <h3>Pro</h3>
+      <div class="price">$15</div>
+      <ul>
+        <li>Unlimited subscriptions</li>
+        <li>Email notifications</li>
+        <li>Premium analytics</li>
+        <li>Single user account</li>
+        <li>Priority support</li>
+        <li>One-time payment</li>
+        <li>All future updates</li>
+      </ul>
+      <a routerLink="/auth/register" class="btn">Get started</a>
+    </div>
+  </div>
+</section>
+
+<section class="about-us-section faq-section">
+  <div class="about-us-header">
+    <h2>Frequently Asked Questions</h2>
+    <p class="about-us-subtitle">Everything you need to know about SubMinder.</p>
+  </div>
+  <div class="about-us-grid faq-grid">
+    <div class="about-us-item faq-item">
+      <div class="about-us-icon">
+        <div class="icon" [innerHTML]="icons['allSubs']"></div>
+      </div>
+      <h3>How does SubMinder work?</h3>
+      <p>Simply add your subscriptions with their costs and renewal dates. We'll track them all in one place and send you timely reminders before any charges.</p>
+    </div>
+    <div class="about-us-item faq-item">
+      <div class="about-us-icon">
+        <div class="icon" [innerHTML]="icons['neverMiss']"></div>
+      </div>
+      <h3>When will I get notifications?</h3>
+      <p>You'll receive email notifications 24 hours before any subscription renewal or charge, giving you plenty of time to review and manage your subscriptions.</p>
+    </div>
+    <div class="about-us-item faq-item">
+      <div class="about-us-icon">
+        <div class="icon" [innerHTML]="icons['seeSpend']"></div>
+      </div>
+      <h3>What can I track?</h3>
+      <p>Track any recurring subscription - streaming services, software, memberships, and more. We support both monthly and yearly billing cycles.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="home-footer">
+  <p>&copy; {{ currentYear }} SubMinder. All rights reserved.</p>
+</footer>

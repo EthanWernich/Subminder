@@ -1,0 +1,15 @@
+<div class="display-cards-grid">
+  <div *ngFor="let card of cards; let i = index"
+       class="display-card skew-card"
+       [ngClass]="'stack-' + i">
+    <div class="card-header">
+      <span class="icon-circle">
+        <!-- SVG Sparkles icon -->
+        <svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.343 17.657l-1.414 1.414m12.728 0l-1.414-1.414M6.343 6.343L4.929 4.929"/><circle cx="12" cy="12" r="5"/></svg>
+      </span>
+      <p class="card-title" [ngClass]="card.titleClass">{{ card.title }}</p>
+    </div>
+    <p class="card-desc">{{ card.description }}</p>
+    <p class="card-date">{{ card.date }}</p>
+  </div>
+</div>

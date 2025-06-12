@@ -1,0 +1,21 @@
+<div class="features-grid">
+  <div *ngFor="let feature of features; let i = index"
+       class="feature-item"
+       [class.top-row]="i < 4"
+       [class.bottom-row]="i >= 4"
+       [class.left-border]="i === 0 || i === 4"
+       [class.right-border]="i === 3 || i === 7"
+       [class.bottom-border]="i < 4">
+    <div class="hover-gradient top" *ngIf="i < 4"></div>
+    <div class="hover-gradient bottom" *ngIf="i >= 4"></div>
+
+    <div class="feature-icon" [innerHTML]="feature.icon"></div>
+
+    <div class="feature-title">
+      <div class="title-indicator"></div>
+      <span>{{ feature.title }}</span>
+    </div>
+
+    <p class="feature-description">{{ feature.description }}</p>
+  </div>
+</div>

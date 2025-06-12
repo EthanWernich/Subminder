@@ -1,0 +1,40 @@
+<div class="subscription-list-container">
+  <h2>Your Subscriptions</h2>
+
+  <div class="subscriptions-wrapper" [class.loading]="loading">
+    <table class="subscriptions-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Cost</th>
+          <th>Billing Cycle</th>
+          <th>Next Charge Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sub of subscriptions">
+          <td>{{ sub.name }}</td>
+          <td>{{ sub.cost | currency:sub.currency }}</td>
+          <td>{{ sub.billing_cycle }}</td>
+          <td>{{ sub.first_charge_date | date }}</td>
+          <td>
+            <button (click)="onEdit(sub)" class="btn btn-sm">Edit</button>
+            <button (click)="deleteSubscription(sub.id!)" class="btn btn-sm btn-danger">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="subscriptions.length === 0">
+          <td colspan="5">No subscriptions found.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="loading-overlay" *ngIf="loading">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <div class="error-message" *ngIf="error">
+    {{ error }}
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="dashboard-container">
+  <div class="loading-overlay" *ngIf="loading">
+    <div class="loading-spinner"></div>
+  </div>
+  <h1>Dashboard</h1>
+  <div class="dashboard-tabs">
+    <button [class.active]="activeTab === 'overview'" (click)="setTab('overview')">Overview</button>
+    <button [class.active]="activeTab === 'subscriptions'" (click)="setTab('subscriptions')">Subscriptions</button>
+  </div>
+
+  <ng-container *ngIf="activeTab === 'overview'">
+    <div class="dashboard-cards">
+      <div class="dashboard-card">
+        <div class="card-label">Total Monthly Spend</div>
+        <div class="card-value">{{ analytics.totalMonthlySpend | currency:analytics.currency }}</div>
+        <div class="card-sub">Across {{ analytics.totalSubscriptions }} subscriptions</div>
+      </div>
+      <div class="dashboard-card">
+        <div class="card-label">Total Subscriptions</div>
+        <div class="card-value">{{ analytics.totalSubscriptions }}</div>
+        <div class="card-sub">Active subscriptions</div>
+      </div>
+      <div class="dashboard-card">
+        <div class="card-label">Average Cost</div>
+        <div class="card-value">{{ analytics.averageSubscriptionCost | currency:analytics.currency }}</div>
+        <div class="card-sub">Per subscription</div>
+      </div>
+      <div class="dashboard-card">
+        <div class="card-label">Next Payment</div>
+        <div class="card-value">{{ analytics.nextPaymentDate | date:'MMM d' }}</div>
+        <div class="card-sub">Upcoming charge</div>
+      </div>
+    </div>
+
+    <div class="dashboard-main">
+      <div class="dashboard-overview">
+        <div class="overview-title">Monthly Spending</div>
+        <div class="bar-chart">
+          <ng-container *ngFor="let month of analytics.monthlySpendHistory">
+            <div class="bar-container">
+              <div class="bar" [style.height.%]="(month.amount / analytics.totalMonthlySpend) * 100"></div>
+              <div class="bar-label">{{ month.month }}</div>
+              <div class="bar-value">{{ month.amount | currency:analytics.currency }}</div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="dashboard-recent-sales">
+        <div class="recent-title">All Subscriptions</div>
+        <div class="recent-sub">You have {{ analytics.totalSubscriptions }} active subscriptions.</div>
+        <ul class="recent-list">
+          <li *ngFor="let sub of analytics.subscriptions">
+            <span class="subscription-icon">{{ sub.name.charAt(0) }}</span>
+            <span class="subscription-name">{{ sub.name }}</span>
+            <span class="subscription-details">
+              {{ sub.billing_cycle | titlecase }} • {{ sub.cost | currency:sub.currency }}
+            </span>
+            <span class="subscription-date">
+              Next: {{ getNextPaymentDate(sub) | date:'MMM d' }}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'subscriptions'">
+    <div class="dashboard-sub-header">
+      <h2> </h2>
+      <button class="btn btn-primary" (click)="openAddModal()">Add Subscription</button>
+    </div>
+    <div class="dashboard-subscriptions">
+      <app-subscription-list (editSubscription)="openEditModal($event)"></app-subscription-list>
+    </div>
+  </ng-container>
+
+  <div class="modal-backdrop" *ngIf="showModal" (click)="closeModal()"></div>
+  <div class="modal" *ngIf="showModal">
+    <app-subscription-form
+      [subscription]="editingSubscription"
+      (cancel)="closeModal()"
+      (saved)="onSubscriptionSaved()">
+    </app-subscription-form>
+  </div>
+</div>

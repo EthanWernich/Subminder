@@ -1,0 +1,106 @@
+.subscription-list-container {
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  position: relative;
+}
+
+.subscriptions-wrapper {
+  position: relative;
+  transition: filter 0.3s ease;
+
+  &.loading {
+    filter: blur(2px);
+    pointer-events: none;
+  }
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 1em;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  color: var(--color-danger);
+  padding: 1em;
+  margin-top: 1em;
+  background: rgba(var(--color-danger-rgb), 0.1);
+  border-radius: 0.5em;
+  text-align: center;
+}
+
+.subscriptions-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 0;
+  background: #fff;
+  border-radius: 1em;
+  border: 1.5px solid #ededed;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.subscriptions-table th, .subscriptions-table td {
+  padding: 1em 1.2em;
+  text-align: left;
+  font-size: 1.1rem;
+}
+.subscriptions-table th {
+  color: var(--color-muted);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+}
+.subscriptions-table tr {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1em;
+}
+.subscriptions-table td {
+  border-bottom: 1px solid var(--color-border);
+}
+.subscriptions-table tr:last-child td {
+  border-bottom: none;
+}
+.btn {
+  margin-right: 0.5em;
+}
+@media (max-width: 700px) {
+  .subscriptions-table, .subscriptions-table thead, .subscriptions-table tbody, .subscriptions-table th, .subscriptions-table td, .subscriptions-table tr {
+    display: block;
+    width: 100%;
+  }
+  .subscriptions-table tr {
+    margin-bottom: 1.5em;
+  }
+  .subscriptions-table td, .subscriptions-table th {
+    padding: 0.8em 0.5em;
+  }
+}

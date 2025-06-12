@@ -1,0 +1,18 @@
+<div class="login-container">
+  <h2>Login to SubMinder</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required />
+    </div>
+    <button type="submit" [disabled]="loading">{{ loading ? 'Logging in...' : 'Login' }}</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </form>
+  <div class="register-link">
+    <p>Don't have an account? <a routerLink="/auth/register">Create one now</a></p>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+.navbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+  padding: 0.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.2s;
+  color: var(--color-primary);
+  opacity: 0.8;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    color: var(--color-btn);
+  }
+
+  &.active {
+    background: var(--color-accent);
+    color: var(--color-btn);
+  }
+}
+
+.nav-icon {
+  display: none;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5;
+  }
+}
+
+.active-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: rgba(37, 99, 235, 0.05);
+  border-radius: 9999px;
+  z-index: -1;
+}
+
+.lamp-effect {
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--color-btn);
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: var(--color-btn);
+    opacity: 0.2;
+    border-radius: 9999px;
+    filter: blur(4px);
+  }
+
+  &::before {
+    width: 3rem;
+    height: 1.5rem;
+    top: -0.5rem;
+    left: -0.5rem;
+  }
+
+  &::after {
+    width: 2rem;
+    height: 1.5rem;
+    top: -0.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    bottom: 0;
+    top: auto;
+  }
+
+  .nav-text {
+    display: none;
+  }
+
+  .nav-icon {
+    display: block;
+  }
+
+  .nav-item {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-container {
+    bottom: auto;
+    top: 0;
+  }
+}
