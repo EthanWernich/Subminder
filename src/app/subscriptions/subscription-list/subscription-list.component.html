@@ -17,7 +17,7 @@
           <td>{{ sub.name }}</td>
           <td>{{ sub.cost | currency:sub.currency }}</td>
           <td>{{ sub.billing_cycle }}</td>
-          <td>{{ sub.first_charge_date | date }}</td>
+          <td>{{ getNextPaymentDate(sub) | date }}</td>
           <td>
             <button (click)="onEdit(sub)" class="btn btn-sm">Edit</button>
             <button (click)="deleteSubscription(sub.id!)" class="btn btn-sm btn-danger">Delete</button>

@@ -18,11 +18,10 @@ export interface Subscription {
   providedIn: 'root',
 })
 export class SupabaseService {
-  private supabase: SupabaseClient;
+  public supabase: SupabaseClient;
 
   constructor() {
     this.supabase = createClient('https://xuobvbyyghehffqrlkfq.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1b2J2Ynl5Z2hlaGZmcXJsa2ZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzMTU1NzksImV4cCI6MjA2NDg5MTU3OX0.Q6BD-PR5CaSb3-92impbTGPetxsK4N_ZxFraIG4xs9k');
-
   }
 
   // Auth methods

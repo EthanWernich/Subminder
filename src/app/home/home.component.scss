@@ -245,6 +245,10 @@ body, .home-hero {
     font-weight: 700;
     margin-bottom: 0.5em;
     color: var(--color-primary);
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   p {

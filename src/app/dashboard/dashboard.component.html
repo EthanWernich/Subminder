@@ -70,7 +70,7 @@
       <button class="btn btn-primary" (click)="openAddModal()">Add Subscription</button>
     </div>
     <div class="dashboard-subscriptions">
-      <app-subscription-list (editSubscription)="openEditModal($event)"></app-subscription-list>
+      <app-subscription-list [reloadTrigger]="reloadTrigger" (editSubscription)="openEditModal($event)"></app-subscription-list>
     </div>
   </ng-container>
 

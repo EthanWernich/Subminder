@@ -1,15 +1,22 @@
 <div class="navbar-container">
   <div class="navbar-content">
-    <a *ngFor="let item of navItems"
-       [routerLink]="item.url"
-       (click)="setActiveTab(item.name)"
-       [class.active]="activeTab === item.name"
-       class="nav-item">
-      <span class="nav-text">{{ item.name }}</span>
-      <span class="nav-icon" [innerHTML]="getIcon(item.name)"></span>
-      <div *ngIf="activeTab === item.name" class="active-indicator">
-        <div class="lamp-effect"></div>
-      </div>
-    </a>
+    <div class="navbar-links">
+      <a *ngFor="let item of navItems"
+         [routerLink]="item.name === 'Pricing' ? null : item.url"
+         (click)="item.name === 'Pricing' ? navigateToPricing() : setActiveTab(item.name)"
+         [class.active]="activeTab === item.name"
+         class="nav-item">
+        <span class="nav-text">{{ item.name }}</span>
+        <span class="nav-icon" [innerHTML]="getIcon(item.name)"></span>
+        <div *ngIf="activeTab === item.name" class="active-indicator">
+          <div class="lamp-effect"></div>
+        </div>
+      </a>
+    </div>
+    <div class="navbar-auth-btn">
+      <button *ngIf="!isLoggedIn" routerLink="/auth/login" class="auth-btn">Login</button>
+      <button *ngIf="!isLoggedIn" routerLink="/auth/register" class="auth-btn">Register</button>
+      <button *ngIf="isLoggedIn" (click)="handleLogout()" class="auth-btn">Log Out</button>
+    </div>
   </div>
 </div>

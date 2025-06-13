@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
+import { SupabaseService } from '../../core/supabase.service';
 
 interface NavItem {
   name: string;
@@ -23,10 +24,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     { name: 'Subscriptions', url: '/dashboard', icon: 'credit-card' },
     { name: 'Pricing', url: '/#pricing', icon: 'dollar-sign' },
   ];
-
+  isLoggedIn = false;
   private routerSubscription: Subscription;
+  private authListener: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private supabase: SupabaseService) {
     // Subscribe to router events to update active tab
     this.routerSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -35,15 +37,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-    // Set initial active tab based on current route
+  async ngOnInit() {
     this.updateActiveTab(this.router.url);
+    const { data: { user } } = await this.supabase.getCurrentUser();
+    this.isLoggedIn = !!user;
+
+    // Listen for auth state changes
+    this.authListener = this.supabase.supabase.auth.onAuthStateChange((_event, session) => {
+      this.isLoggedIn = !!session?.user;
+    });
   }
 
   ngOnDestroy() {
     // Clean up subscription
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
+    }
+    if (this.authListener && typeof this.authListener.subscription?.unsubscribe === 'function') {
+      this.authListener.subscription.unsubscribe();
     }
   }
 
@@ -74,6 +85,23 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.activeTab = tab;
   }
 
+  navigateToPricing() {
+    // First navigate to home page
+    this.router.navigate(['/']).then(() => {
+      // After navigation, scroll to pricing section
+      setTimeout(() => {
+        const pricingElement = document.getElementById('pricing');
+        if (pricingElement) {
+          pricingElement.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100); // Small delay to ensure page is loaded
+    });
+    this.setActiveTab('Pricing');
+  }
+
   getIcon(name: string): string {
     switch (name) {
       case 'Home':
@@ -85,5 +113,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
       default:
         return '';
     }
+  }
+
+  async handleLogout() {
+    await this.supabase.signOut();
+    this.isLoggedIn = false;
+    this.router.navigate(['/auth/login']);
   }
 }

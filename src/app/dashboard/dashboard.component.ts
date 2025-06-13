@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
   };
   loading = true;
   error: string | null = null;
+  reloadTrigger = 0;
 
   constructor(
     private supabase: SupabaseService,
@@ -113,9 +114,9 @@ export class DashboardComponent implements OnInit {
       case 'yearly':
         return cost / 12;
       case 'weekly':
-        return cost * 4;
+        return (cost * 52) / 12; // 52 weeks in a year, divided by 12 months
       case 'daily':
-        return cost * 30;
+        return (cost * 365.25) / 12; // 365.25 days in a year, divided by 12 months
       default:
         return cost;
     }
@@ -126,6 +127,37 @@ export class DashboardComponent implements OnInit {
     const today = new Date();
     let nextPayment = new Date(firstCharge);
 
+    // If the first charge is in the future, that's the next payment
+    if (nextPayment > today) {
+      return nextPayment;
+    }
+
+    // If the first charge is today, the next payment should be the next cycle
+    if (
+      nextPayment.getFullYear() === today.getFullYear() &&
+      nextPayment.getMonth() === today.getMonth() &&
+      nextPayment.getDate() === today.getDate()
+    ) {
+      switch (subscription.billing_cycle?.toLowerCase()) {
+        case 'monthly':
+          nextPayment.setMonth(nextPayment.getMonth() + 1);
+          break;
+        case 'yearly':
+          nextPayment.setFullYear(nextPayment.getFullYear() + 1);
+          break;
+        case 'weekly':
+          nextPayment.setDate(nextPayment.getDate() + 7);
+          break;
+        case 'daily':
+          nextPayment.setDate(nextPayment.getDate() + 1);
+          break;
+        default:
+          return nextPayment;
+      }
+      return nextPayment;
+    }
+
+    // Otherwise, increment until we find the next payment after today
     while (nextPayment <= today) {
       switch (subscription.billing_cycle?.toLowerCase()) {
         case 'monthly':
@@ -195,6 +227,7 @@ export class DashboardComponent implements OnInit {
 
   async onSubscriptionSaved() {
     await this.loadAnalytics();
+    this.reloadTrigger++;
     this.closeModal();
   }
 }
