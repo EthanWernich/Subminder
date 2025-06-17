@@ -12,22 +12,22 @@
 <section class="explainer-section">
   <h2>Why Choose SubMinder?</h2>
   <div class="explainer-grid">
-    <div class="explainer-feature">
+    <div class="explainer-feature card">
       <div class="icon" [innerHTML]="icons['allSubs']"></div>
       <h3>All Your Subs in One Place</h3>
       <p>Track every subscription, from Netflix to SaaS, with cost, billing cycle, and renewal dates.</p>
     </div>
-    <div class="explainer-feature">
+    <div class="explainer-feature card">
       <div class="icon" [innerHTML]="icons['neverMiss']"></div>
       <h3>Never Miss a Payment</h3>
       <p>Get email reminders 24 hours before any charge, so you're always in control.</p>
     </div>
-    <div class="explainer-feature">
+    <div class="explainer-feature card">
       <div class="icon" [innerHTML]="icons['seeSpend']"></div>
       <h3>See Your Spend</h3>
       <p>Instant dashboard shows your total monthly and yearly outgoings.</p>
     </div>
-    <div class="explainer-feature">
+    <div class="explainer-feature card">
       <div class="icon" [innerHTML]="icons['privacy']"></div>
       <h3>Privacy-First</h3>
       <p>Your data stays private. No sharing, no selling, ever.</p>
@@ -48,7 +48,7 @@
 <section class="pricing-section" id="pricing" href="#pricing">
   <h2>Simple Pricing</h2>
   <div class="pricing-cards">
-    <div class="pricing-card">
+    <div class="pricing-card card">
       <h3>Free</h3>
       <div class="price">$0</div>
       <ul>
@@ -60,7 +60,7 @@
       </ul>
       <a routerLink="/auth/register" class="btn">Get started</a>
     </div>
-    <div class="pricing-card popular">
+    <div class="pricing-card popular card">
       <h3>Standard <span class="badge">Most Popular</span></h3>
       <div class="price">$5</div>
       <ul>
@@ -73,7 +73,7 @@
       </ul>
       <a routerLink="/auth/register" class="btn btn-primary">Get started</a>
     </div>
-    <div class="pricing-card">
+    <div class="pricing-card card">
       <h3>Pro</h3>
       <div class="price">$15</div>
       <ul>
@@ -96,21 +96,21 @@
     <p class="about-us-subtitle">Everything you need to know about SubMinder.</p>
   </div>
   <div class="about-us-grid faq-grid">
-    <div class="about-us-item faq-item">
+    <div class="about-us-item faq-item card">
       <div class="about-us-icon">
         <div class="icon" [innerHTML]="icons['allSubs']"></div>
       </div>
       <h3>How does SubMinder work?</h3>
       <p>Simply add your subscriptions with their costs and renewal dates. We'll track them all in one place and send you timely reminders before any charges.</p>
     </div>
-    <div class="about-us-item faq-item">
+    <div class="about-us-item faq-item card">
       <div class="about-us-icon">
         <div class="icon" [innerHTML]="icons['neverMiss']"></div>
       </div>
       <h3>When will I get notifications?</h3>
       <p>You'll receive email notifications 24 hours before any subscription renewal or charge, giving you plenty of time to review and manage your subscriptions.</p>
     </div>
-    <div class="about-us-item faq-item">
+    <div class="about-us-item faq-item card">
       <div class="about-us-icon">
         <div class="icon" [innerHTML]="icons['seeSpend']"></div>
       </div>
