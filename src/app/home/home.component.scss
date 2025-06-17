@@ -9,6 +9,7 @@ body, .home-hero {
   background-image: linear-gradient(90deg, #fafbfc 90%, #fff 100%),
     url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" fill="white"/><rect x="39.5" y="0.5" width="39" height="39" rx="7.5" fill="none" stroke="%23e5e7eb"/></svg>');
   background-size: 40px 40px;
+  padding: 1rem;
 }
 .hero-content {
   text-align: center;
@@ -19,6 +20,7 @@ body, .home-hero {
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 0.2em;
+  line-height: 1.1;
 }
 .hero-content .highlight {
   color: var(--color-btn);
@@ -27,12 +29,14 @@ body, .home-hero {
   font-size: 1.4rem;
   color: var(--color-muted);
   margin-bottom: 2em;
+  line-height: 1.4;
 }
 .hero-actions {
   display: flex;
   gap: 1.5em;
   justify-content: center;
   margin-top: 2em;
+  flex-wrap: wrap;
 }
 
 .features-section {
@@ -106,6 +110,7 @@ body, .home-hero {
   gap: 2em;
   justify-content: center;
   margin-top: 2em;
+  padding: 0 1rem;
 }
 .pricing-card {
   background: #fff;
@@ -179,19 +184,6 @@ body, .home-hero {
   padding: 2em 0 1em 0;
   color: var(--color-muted);
   font-size: 1.1rem;
-
-}
-
-@media (max-width: 900px) {
-  .pricing-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-  .pricing-card {
-    max-width: 100%;
-    min-width: 0;
-    width: 100%;
-  }
 }
 
 .explainer-section {
@@ -209,6 +201,7 @@ body, .home-hero {
   gap: 2.5em;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 .explainer-feature {
   background: var(--color-accent);
@@ -255,15 +248,6 @@ body, .home-hero {
     color: var(--color-muted);
     font-size: 1.08rem;
     text-align: center;
-  }
-}
-@media (max-width: 700px) {
-  .explainer-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5em;
-  }
-  .explainer-feature {
-    min-height: 0;
   }
 }
 
@@ -317,6 +301,7 @@ body, .home-hero {
   gap: 2.5em;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .about-us-item {
@@ -387,16 +372,6 @@ body, .home-hero {
   text-decoration: underline;
 }
 
-@media (max-width: 700px) {
-  .about-us-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5em;
-  }
-  .about-us-item {
-    min-height: 0;
-  }
-}
-
 .faq-section {
   background: #fff;
   padding: 4em 0 2em 0;
@@ -408,7 +383,7 @@ body, .home-hero {
     gap: 2em;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1em;
+    padding: 0 1rem;
   }
 
   .faq-item {
@@ -461,7 +436,99 @@ body, .home-hero {
   }
 }
 
-@media (max-width: 700px) {
+// Mobile responsive styles
+@media (max-width: 768px) {
+  .home-hero {
+    min-height: 80vh;
+    padding: 2rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5em;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .explainer-section,
+  .features-section,
+  .pricing-section,
+  .about-us-section,
+  .faq-section {
+    padding: 3em 0 2em 0;
+  }
+
+  .explainer-section h2,
+  .features-section h2,
+  .pricing-section h2,
+  .about-us-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5em;
+  }
+
+  .explainer-grid,
+  .about-us-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    padding: 0 1rem;
+  }
+
+  .explainer-feature,
+  .about-us-item {
+    min-height: auto;
+    padding: 1.5em 1rem;
+  }
+
+  .pricing-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    padding: 0 1rem;
+  }
+
+  .pricing-card {
+    max-width: 320px;
+    min-width: 0;
+    width: 100%;
+    padding: 2em 1.5em 1.5em 1.5em;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .pricing-card .price {
+    font-size: 2rem;
+  }
+
+  .pricing-card ul {
+    font-size: 1rem;
+  }
+
+  .display-cards-heading {
+    font-size: 1.6rem;
+    margin-bottom: 2em;
+  }
+
+  .about-us-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2em;
+  }
+
   .faq-section {
     .faq-grid {
       grid-template-columns: 1fr;
@@ -470,6 +537,67 @@ body, .home-hero {
 
     .faq-item {
       min-height: auto;
+      padding: 1.5em 1rem;
     }
+  }
+
+  .home-footer {
+    padding: 1.5em 0 1em 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1rem;
+  }
+
+  .explainer-section h2,
+  .features-section h2,
+  .pricing-section h2,
+  .about-us-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .explainer-feature,
+  .about-us-item {
+    padding: 1.2em 0.8rem;
+  }
+
+  .pricing-card {
+    max-width: 280px;
+    padding: 1.5em 1rem 1rem 1rem;
+  }
+
+  .pricing-card .price {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .explainer-grid,
+  .about-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+  }
+
+  .pricing-cards {
+    gap: 1.5em;
+  }
+
+  .pricing-card {
+    min-width: 240px;
   }
 }
